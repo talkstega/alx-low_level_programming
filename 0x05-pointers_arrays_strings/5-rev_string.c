@@ -1,19 +1,30 @@
+#include <stdio.h>
 #include "main.h"
 /**
- * print_rev - toma la cadena de la funcion.
- * @s: value taken from main
- * Return: (0)
+ *rev_string - update value.
+ *@s: value to be evaluate.
+ *Return: not.
  */
-void print_rev(char *s)
+void rev_string(char *s)
 {
-	int len;
+	int len = 0;
+	int l = 0;
+	char *y = s;
+	int e = 0;
+	int x;
+	char n;
 
-	for (len = 0; s[len] != '\0'; len++)
+	while (*y != '\0')
 	{
+		y++;
+		len++;
 	}
-	for (len = len - 1; len >= 0; len--)
+	l = len - 1;
+	for ( ; e < ((l / 2) + 1) ; e++)
 	{
-		_putchar(s[len]);
+		x = (l - e);
+		n = s[e];
+		s[e] = s[x];
+		s[x] = n;
 	}
-	_putchar('\n');
 }
