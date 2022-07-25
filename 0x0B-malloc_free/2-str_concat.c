@@ -1,53 +1,54 @@
-#include "holberton.h"
 #include <stdlib.h>
-#include <stdio.h>
+#include "main.h"
 
 /**
-  * str_concat - Concatenates two strings of any size
-  * @s1: the first string to concatenate
-  * @s2: the second string to concatenate
-  *
-  * Return: the two strings concatenated
-  */
+ * _strlen - returns the length of a string
+ * @s: string s
+ * Return: length of string
+ */
+int _strlen(char *s)
+{
+	int length = 0;
+
+	while (*s)
+	{
+		s++;
+		length++;
+	}
+	return (length);
+}
+
+/**
+ * str_concat - concatenates two strings
+ * @s1: first string
+ * @s2: second string
+ * Return: concatenated strings
+ */
 char *str_concat(char *s1, char *s2)
 {
-	int i = 0, j = 0, k = 0, l = 0;
-	char *s;
+	char *cat, *_cat;
 
 	if (s1 == NULL)
 		s1 = "";
-
 	if (s2 == NULL)
 		s2 = "";
 
-	while (s1[i])
-		i++;
-
-	while (s2[j])
-		j++;
-
-	l = i + j;
-	s = malloc((sizeof(char) * l) + 1);
-
-	if (s == NULL)
+	cat = malloc(sizeof(char) * (_strlen(s1) + _strlen(s2)) + 1);
+	if (!cat)
 		return (NULL);
-
-	j = 0;
-
-	while (k < l)
+	_cat = cat;
+	while (*s1)
 	{
-		if (k <= i)
-			s[k] = s1[k];
-
-		if (k >= i)
-		{
-			s[k] = s2[j];
-			j++;
-		}
-
-		k++;
+		*_cat = *s1;
+		_cat++;
+		s1++;
 	}
-
-	s[k] = '\0';
-	return (s);
+	while (*s2)
+	{
+		*_cat = *s2;
+		_cat++;
+		s2++;
+	}
+	*_cat = '\0';
+	return (cat);
 }
